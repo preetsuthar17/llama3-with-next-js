@@ -37,7 +37,7 @@ export default function ChatMessage({
           </div>
         </div>
         <div className="ml-3">
-          <p className="text-gray-200 whitespace-pre-wrap leading-tight">
+          <p className="text-gray-200 whitespace-pre-wrap leading-normal">
             {message.role === "user" ? (
               message.content
             ) : (

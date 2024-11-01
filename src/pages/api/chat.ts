@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 async function checkOllamaConnection(): Promise<boolean> {
   try {
     const response = await fetch("http://localhost:11434/api/version", {
-      signal: AbortSignal.timeout(5000),
+      signal: AbortSignal.timeout(3000), // Reduced timeout
     });
     return response.ok;
   } catch (error) {
@@ -35,13 +35,7 @@ export default async function handler(
   }
 
   // Check if Ollama is running
-  const isOllamaRunning = await checkOllamaConnection();
-  if (!isOllamaRunning) {
-    return res.status(503).json({
-      error:
-        "Ollama service is not running. Please start Ollama and try again.",
-    });
-  }
+  const isOllamaRunningPromise = checkOllamaConnection();
 
   // Enable streaming
   res.writeHead(200, {
@@ -52,7 +46,14 @@ export default async function handler(
 
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 30000);
+    const timeout = setTimeout(() => controller.abort(), 20000); // Reduced timeout
+
+    const isOllamaRunning = await isOllamaRunningPromise;
+    if (!isOllamaRunning) {
+      throw new Error(
+        "Ollama service is not running. Please start Ollama and try again."
+      );
+    }
 
     const response = await fetch("http://localhost:11434/api/generate", {
       method: "POST",

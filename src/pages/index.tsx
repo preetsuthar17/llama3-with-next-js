@@ -137,10 +137,12 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen justify-center items-center flex flex-row bg-zinc-950 p-4">
-      <div className="w-[80%] relative">
+    <div className="min-h-screen justify-center items-center flex flex-row bg-zinc-950 ">
+      <div className="w-full  relative">
         <div className=" text-white rounded-lg p-6">
-          <h1 className="text-2xl font-bold mb-4 text-center">Ollama Chat</h1>
+          <h1 className="text-3xl font-bold my-[5rem] text-center">
+            What can I help you with?
+          </h1>
 
           {ollamaStatus === "checking" && (
             <div className="text-center mb-4">Checking Ollama status...</div>
@@ -156,7 +158,7 @@ export default function Home() {
             </div>
           )}
 
-          <div className="space-y-4 mb-4 overflow-y-auto p-4">
+          <div className="space-y-4 mb-[5rem] overflow-y-auto">
             {messages.map((message, index) => (
               <ChatMessage key={index} message={message} />
             ))}
