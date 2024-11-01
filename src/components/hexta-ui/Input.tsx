@@ -1,9 +1,9 @@
 import React from "react";
-import clsx from "clsx";
+import clsx, { ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-const cn = (...args: any[]) => {
-  return clsx(twMerge(...args));
+const cn = (...args: ClassValue[]) => {
+  return twMerge(clsx(...args));
 };
 
 interface InputProps
@@ -19,6 +19,7 @@ interface InputProps
   placeholder?: string;
   name?: string;
 }
+
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
@@ -40,7 +41,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         onChange={onChange}
         placeholder={placeholder}
         className={cn(
-          " flex px-4 py-2 bg-zinc-950 text-sm rounded-lg focus:outline-none border border-white border-opacity-10 focus:ring-white focus:ring-1 disabled:opacity-80 disabled:cursor-not-allowed ",
+          "flex px-4 py-2 bg-zinc-950 text-sm rounded-lg focus:outline-none border border-white border-opacity-10 focus:ring-white focus:ring-1 disabled:opacity-80 disabled:cursor-not-allowed",
           className
         )}
         ref={ref}
@@ -49,3 +50,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     );
   }
 );
+
+// Add display name for better debugging
+Input.displayName = "Input";

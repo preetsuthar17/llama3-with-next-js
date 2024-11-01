@@ -6,7 +6,8 @@ async function checkOllamaConnection(): Promise<boolean> {
       signal: AbortSignal.timeout(3000), // Reduced timeout
     });
     return response.ok;
-  } catch (error) {
+  } catch (e) {
+    console.error("Error checking Ollama connection:", e);
     return false;
   }
 }

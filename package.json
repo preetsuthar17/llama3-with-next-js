@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "electron": "concurrently \"npm run start\" \"electron main.js\""
   },
   "dependencies": {
     "@hextastudio/ui": "^1.4.7",
@@ -22,6 +23,9 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "concurrently": "^9.0.1",
+    "electron": "^33.0.2",
+    "electron-packager": "^17.1.2",
     "eslint": "^8",
     "eslint-config-next": "15.0.2",
     "postcss": "^8",
