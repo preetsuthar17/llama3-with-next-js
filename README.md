@@ -1,8 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Next.js + Ollama Chat Application
 
-## Getting Started
+This project is a chat application that uses Next.js for the frontend and Ollama running Llama 3 locally for AI responses.
 
-First, run the development server:
+## Prerequisites
+
+- Node.js 18+ installed
+- Git installed
+- Ollama installed on your machine
+- At least 8GB of RAM recommended for running Llama 3
+
+## Installation Steps
+
+### 1. Clone the Repository
+
+```bash
+git clone llama3-with-next-js
+cd llama3-with-next-js
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+### 3. Install Ollama
+
+#### For macOS
+
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+```
+
+#### For Linux
+
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+```
+
+#### For Windows
+
+- Visit [Ollama's official website](https://ollama.com/download) and download the Windows installer
+- Follow the installation wizard
+
+### 4. Pull and Run Llama 3 Model
+
+```bash
+# Pull the Llama 2 model
+ollama pull llama3
+
+# Verify the model is working
+ollama run llama3 "Hello, how are you?"
+```
+
+Then, in a new terminal, start the Next.js development server:
 
 ```bash
 npm run dev
@@ -10,31 +65,59 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+1. Open your browser and navigate to `http://localhost:3000`
+2. Enter your message in the text area
+3. Click "Send" to get a response from Llama 2
+4. The AI's response will appear below your message
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+## Troubleshooting
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Common Issues
 
-## Learn More
+1. **"Ollama not running" error**
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   # Make sure Ollama is running
+   ollama serve
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+2. **"Model not found" error**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   # Pull the model again
+   ollama pull llama3
+   ```
 
-## Deploy on Vercel
+3. **API Connection Issues**
+   - Verify that both the API server (port 3001) and Next.js server (port 3000) are running
+   - Check that your `.env.local` file has the correct API URL
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Performance Tips
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+- Llama 2 requires significant RAM. Close unnecessary applications while running
+- First response might be slow as the model loads into memory
+- Keep your prompts clear and concise for better response times
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details
+
+## Acknowledgements
+
+- [Next.js](https://nextjs.org/)
+- [Ollama](https://ollama.com/)
+- [Llama 3](https://ai.meta.com/llama/)
